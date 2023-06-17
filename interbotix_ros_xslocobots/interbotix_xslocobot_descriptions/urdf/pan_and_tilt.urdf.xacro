@@ -145,21 +145,29 @@
       <self_collide>true</self_collide>
     </gazebo>
 
-    <joint name="camera" type="fixed">
+    <!-- <joint name="camera" type="fixed">
       <origin
         rpy="0 0 0"
         xyz="0.05318 0.0175 0.000009"/>
       <parent
         link="${robot_name}/tilt_link"/>
       <child
-        link="camera_${robot_name}_link"/>
-    </joint>
-
+        link="$(arg camera_name)_base_link"/>
+    </joint> -->
+    <!-- <link name="${arg camera_name}_base_link" /> -->
+    
+    <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/zed_camera/zed_macro.urdf.xacro" />
+    <xacro:zed_camera name="$(arg camera_name)" model="$(arg camera_model)" parent="$(arg base_frame)">
+        <origin 
+          xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" 
+          rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)"/>
+    </xacro:zed_camera>
+  
     <gazebo reference="camera">
       <disableFixedJointLumping>true</disableFixedJointLumping>
     </gazebo>
 
-    <link name="camera_${robot_name}_link">
+    <!-- <link name="camera_${robot_name}_link">
       <visual>
         <origin
           rpy="0 0 0"
@@ -197,7 +205,7 @@
           iyz="0.0000000248"
           izz="0.0000468600"/>
       </inertial>
-    </link>
+    </link> -->
 
     <gazebo reference="camera_${robot_name}_link">
       <material>Gazebo/Grey</material>
@@ -206,14 +214,14 @@
 
     <!-- Adds a dummy link, libgazebo_ros_openni_kinect publishes from frame's z-axis -->
     <!-- https://github.com/ros-simulation/gazebo_ros_pkgs/issues/243 -->
-    <joint name="camera_depth_joint" type="fixed">
+    <!-- <joint name="camera_depth_joint" type="fixed">
       <origin rpy="${-pi/2} 0 ${-pi/2}" xyz="0 0 0"/>
       <parent link="camera_${robot_name}_link"/>
       <child link="${robot_name}/camera_depth_link"/>
     </joint>
     <link name="${robot_name}/camera_depth_link">
       <origin rpy="0 0 0" xyz="0 0 0"/>
-    </link>
+    </link> -->
 
     <gazebo reference="camera_${robot_name}_link">
       <sensor name="camera_frame_sensor" type="depth">

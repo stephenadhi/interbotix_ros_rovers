@@ -20,6 +20,17 @@
   <xacro:property name="urdf_loc"         value="$(arg external_urdf_loc)"/>
   <xacro:property name="pi_offset"        value="0.00001"/>
 
+  <!-- ZED camera -->
+  <xacro:arg name="camera_name"   default="zed2" />
+  <xacro:arg name="camera_model"  default="zed2" />
+  <xacro:arg name="base_frame"    default="locobot/tilt_link" />
+  <xacro:arg name="cam_pos_x"     default="0.05318" />
+  <xacro:arg name="cam_pos_y"     default="0.0175" />
+  <xacro:arg name="cam_pos_z"     default="0.000009" />
+  <xacro:arg name="cam_roll"      default="0.0" />
+  <xacro:arg name="cam_pitch"     default="0.0" />
+  <xacro:arg name="cam_yaw"       default="0.0" />
+
   <xacro:if value="${urdf_loc != ''}">
     <xacro:include filename="${urdf_loc}"/>
   </xacro:if>
