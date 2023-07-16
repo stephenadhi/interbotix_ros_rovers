@@ -548,11 +548,11 @@
     <!-- Ground truth pose -->
     <plugin filename="libgazebo_ros_p3d.so" name="p3d_base_controller">
       <ros>
-        <remapping>odom:=sim_ground_truth_pose</remapping>
+        <!-- <remapping>odom:=sim_ground_truth_pose</remapping> -->
         <namespace>/$(arg robot_name)</namespace>
       </ros>
       <body_name>$(arg robot_name)/base_footprint</body_name>
-      <frame_name>world</frame_name>
+      <frame_name>locobot/odom</frame_name>
       <update_rate>100.0</update_rate>
       <xyz_offset>0 0 0</xyz_offset>
       <rpy_offset>0.0 0.0 0.0</rpy_offset>
