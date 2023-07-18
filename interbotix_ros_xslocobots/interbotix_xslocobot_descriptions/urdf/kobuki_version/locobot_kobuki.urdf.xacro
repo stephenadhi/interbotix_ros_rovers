@@ -553,7 +553,7 @@
       </ros>
       <body_name>$(arg robot_name)/base_footprint</body_name>
       <frame_name>locobot/odom</frame_name>
-      <update_rate>100.0</update_rate>
+      <update_rate>50.0</update_rate>
       <xyz_offset>0 0 0</xyz_offset>
       <rpy_offset>0.0 0.0 0.0</rpy_offset>
       <gaussian_noise>0</gaussian_noise>
