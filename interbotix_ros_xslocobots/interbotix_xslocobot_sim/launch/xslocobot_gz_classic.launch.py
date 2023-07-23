@@ -68,6 +68,8 @@ def launch_setup(context, *args, **kwargs):
     start_gazebo_paused_launch_arg = LaunchConfiguration('start_gazebo_paused')
     enable_gazebo_recording_launch_arg = LaunchConfiguration('enable_gazebo_recording')
     robot_description_launch_arg = LaunchConfiguration('robot_description')
+    spawn_x_pos_launch_arg = LaunchConfiguration('spawn_x_pos')
+    spawn_y_pos_launch_arg = LaunchConfiguration('spawn_y_pos')
 
     # Set ignition resource paths
     gz_resource_path_env_var = SetEnvironmentVariable(
@@ -155,8 +157,8 @@ def launch_setup(context, *args, **kwargs):
         arguments=[
             '-entity', 'robot_description',
             '-topic', 'robot_description',
-            '-x', '0.0',
-            '-y', '0.0',
+            '-x', spawn_x_pos_launch_arg,
+            '-y', spawn_y_pos_launch_arg,
             '-z', '0.0',
             '-Y', '0.0',
         ],
@@ -419,6 +421,24 @@ def generate_launch_description():
             description=(
                 'tells ROS nodes asking for time to get the Gazebo-published simulation time, '
                 'published over the ROS topic /clock.'
+            )
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'spawn_x_pos',
+            default_value='0.0',
+            description=(
+                'X-position to spawn the robot'
+            )
+        )
+    )
+    declared_arguments.append(
+        DeclareLaunchArgument(
+            'spawn_y_pos',
+            default_value='0.0',
+            description=(
+                'Y-position to spawn the robot'
             )
         )
     )
