@@ -157,10 +157,11 @@
     <!-- <link name="${arg camera_name}_base_link" /> -->
     
     <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/zed_camera/zed_macro.urdf.xacro" />
+    <xacro:include filename="$(find interbotix_xslocobot_descriptions)/urdf/zed_camera/include/materials.urdf.xacro" />
     <xacro:zed_camera name="$(arg camera_name)" model="$(arg camera_model)" parent="$(arg base_frame)">
         <origin 
-          xyz="$(arg cam_pos_x) $(arg cam_pos_y) $(arg cam_pos_z)" 
-          rpy="$(arg cam_roll) $(arg cam_pitch) $(arg cam_yaw)"/>
+          xyz="$(arg cam_pos_x) 0 0" 
+          rpy="0 0 0"/>
     </xacro:zed_camera>
   
     <gazebo reference="camera">
